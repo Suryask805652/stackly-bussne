@@ -1,0 +1,2346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Solutions | Professional Business Consulting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --primary-dark: #6d28d9;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --shadow: 0 10px 25px rgba(124, 58, 237, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--secondary);
+            background-color: var(--light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .action-btn {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-btn-main {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
+        }
+
+        .action-btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+        }
+
+        .action-btn-alt {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .action-btn-alt:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .section-title-area {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title-area h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title-area p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Background Animation */
+        .dynamic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .animated-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(59, 130, 246, 0.1));
+            animation: float-animation 15s infinite ease-in-out;
+        }
+
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float-shape 20s infinite linear;
+        }
+
+        .floating-shape.circular {
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .floating-shape.diamond {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            transform: rotate(45deg);
+        }
+
+        @keyframes float-animation {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+            }
+        }
+
+        @keyframes float-shape {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(100px, 100px) rotate(90deg);
+            }
+            50% {
+                transform: translate(0, 200px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-100px, 100px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .main-nav.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .main-nav .main-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .brand-logo .highlight-text {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+        }
+
+        .mobile-menu-btn.active {
+            background: var(--secondary);
+        }
+
+        /* Mobile Menu Overlay */
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-overlay.active {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 180px 0 100px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-section .main-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-content-area {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-section h1 .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--gray);
+        }
+
+        .action-button-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-visual {
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .hero-visual img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            animation: floating-image 6s infinite ease-in-out;
+        }
+
+        @keyframes floating-image {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Letter Slider */
+        .marquee-container {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 40px 0;
+            overflow: hidden;
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee-slide 20s linear infinite;
+        }
+
+        @keyframes marquee-slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-content span {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 20px;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Image Slider */
+        .carousel-section {
+            padding: 80px 0;
+            background-color: #f8fafc;
+            position: relative;
+        }
+
+        .image-carousel {
+            width: 100%;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .carousel-slide {
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+        }
+
+        .slide-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .slide-details p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .carousel-nav-next, .carousel-nav-prev {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .carousel-nav-next:hover, .carousel-nav-prev:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .carousel-nav-next:after, .carousel-nav-prev:after {
+            font-size: 1.5rem;
+        }
+
+        .carousel-indicator {
+            background-color: white;
+            opacity: 0.5;
+            width: 12px;
+            height: 12px;
+        }
+
+        .carousel-indicator.active {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            opacity: 1;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+        }
+
+        .services-grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-item-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-item-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .service-item-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .service-item-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .service-item-card p {
+            color: var(--gray);
+        }
+
+        /* Solutions Section */
+        .solutions-section {
+            padding: 100px 0;
+            background-color: #f8fafc;
+        }
+
+        .solutions-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .solution-block {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .solution-block:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .solution-text-content {
+            flex: 1;
+        }
+
+        .solution-text-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .solution-text-content p {
+            margin-bottom: 25px;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .solution-text-content ul {
+            list-style: none;
+        }
+
+        .solution-text-content li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            color: var(--secondary);
+        }
+
+        .solution-text-content li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .solution-visual {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .solution-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .solution-visual:hover img {
+            transform: scale(1.05);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--secondary), #0f172a);
+            color: white;
+        }
+
+        .about-content-wrapper {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .about-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 50px;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background-color: #060607;
+        }
+
+        .contact-layout {
+            display: flex;
+            gap: 60px;
+        }
+
+        .contact-form-container {
+            flex: 1;
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form-container input,
+        .contact-form-container select,
+        .contact-form-container textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--gray-light);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .contact-form-container input:focus,
+        .contact-form-container select:focus,
+        .contact-form-container textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+
+        .contact-details-card {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 40px;
+            border-radius: 20px;
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-details-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-info-item i {
+            font-size: 1.2rem;
+            color: white;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .contact-info-item p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Updated Footer */
+        .site-footer {
+            background: linear-gradient(135deg, #0f172a, var(--secondary));
+            color: white;
+            padding: 80px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .footer-main-area {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-about-section {
+            max-width: 350px;
+        }
+
+        .footer-about-section .brand-logo {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-about-section p {
+            color: #cbd5e1;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .footer-newsletter-area h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .newsletter-form-container {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .newsletter-form-container input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 12px 15px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .newsletter-form-container input::placeholder {
+            color: #94a3b8;
+        }
+
+        .newsletter-form-container input:focus {
+            outline: none;
+        }
+
+        .newsletter-submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-submit-btn:hover {
+            background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+        }
+
+        .footer-links-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-column-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .footer-column-section ul {
+            list-style: none;
+        }
+
+        .footer-column-section li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            padding: 4px 0;
+        }
+
+        .footer-column-section a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-contact-area h4 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-contact-area h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .footer-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: transparent;
+            padding: 0;
+            box-shadow: none;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .footer-contact-item i {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        .footer-contact-item strong {
+            display: block;
+            font-size: 0.9rem;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .footer-contact-item p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-bottom-area {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-social-area h5 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .social-icons-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icon-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icon-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+
+        .social-icon-link i {
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-icon-link:hover::before {
+            transform: scale(1);
+        }
+
+        .social-icon-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-legal-info {
+            text-align: right;
+        }
+
+        .footer-legal-info p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .legal-links-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .legal-links-group a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .legal-links-group a:hover {
+            color: white;
+        }
+
+        /* Animation Classes */
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-fade-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-fade-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .animate-fade-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-fade-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .animation-delay-1 {
+            transition-delay: 0.2s;
+        }
+
+        .animation-delay-2 {
+            transition-delay: 0.4s;
+        }
+
+        /* ==================== */
+        /* RESPONSIVE MEDIA QUERIES */
+        /* ==================== */
+
+        /* Tablet and Smaller Desktop */
+        @media (max-width: 992px) {
+            .hero-section .main-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content-area {
+                margin-bottom: 50px;
+            }
+
+            .action-button-group {
+                justify-content: center;
+            }
+
+            .solution-block,
+            .solution-block:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .contact-layout {
+                flex-direction: column;
+            }
+
+            .image-carousel {
+                height: 400px;
+            }
+
+            .footer-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile Devices */
+        @media (max-width: 768px) {
+            /* Mobile Menu Styles */
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 85%;
+                max-width: 320px;
+                height: 100vh;
+                background: var(--light);
+                padding: 80px 0 30px;
+                margin: 0;
+                list-style: none;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                border-bottom: 1px solid var(--gray-light);
+                opacity: 0;
+                transform: translateX(-20px);
+                transition: all 0.3s ease;
+                margin: 0;
+                width: 100%;
+            }
+
+            .nav-menu.active li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            /* Staggered animation for menu items */
+            .nav-menu.active li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-menu.active li:nth-child(2) { transition-delay: 0.15s; }
+            .nav-menu.active li:nth-child(3) { transition-delay: 0.2s; }
+            .nav-menu.active li:nth-child(4) { transition-delay: 0.25s; }
+            .nav-menu.active li:nth-child(5) { transition-delay: 0.3s; }
+
+            .nav-menu a {
+                display: flex;
+                align-items: center;
+                padding: 18px 25px;
+                color: var(--secondary);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 1.1rem;
+                transition: var(--transition);
+                position: relative;
+                width: 100%;
+            }
+
+            .nav-menu a:hover {
+                background: linear-gradient(90deg, rgba(124, 58, 237, 0.1), transparent);
+                color: var(--primary);
+                padding-left: 30px;
+            }
+
+            /* General Mobile Styles */
+            .main-container {
+                padding: 0 15px;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+            }
+            
+            h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            h3 {
+                font-size: 1.4rem !important;
+            }
+            
+            .section-title-area {
+                margin-bottom: 40px;
+            }
+            
+            .section-title-area p {
+                font-size: 1rem;
+            }
+            
+            /* Navigation Mobile */
+            .main-nav {
+                padding: 12px 0;
+            }
+            
+            .main-nav .main-container {
+                padding: 0 15px;
+            }
+            
+            .brand-logo {
+                font-size: 1.6rem;
+            }
+            
+            /* Hero Section Mobile */
+            .hero-section {
+                padding: 120px 0 60px;
+            }
+            
+            .hero-section .main-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content-area {
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 15px;
+            }
+            
+            .hero-section p {
+                font-size: 1.1rem;
+                margin-bottom: 25px;
+            }
+            
+            .action-button-group {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .action-btn {
+                width: 100%;
+                max-width: 280px;
+                padding: 14px 28px;
+            }
+            
+            .hero-visual {
+                max-width: 100%;
+            }
+            
+            .hero-visual img {
+                max-height: 300px;
+                object-fit: cover;
+            }
+            
+            /* Letter Slider Mobile */
+            .marquee-container {
+                padding: 30px 0;
+                margin: 40px 0;
+            }
+            
+            .marquee-content span {
+                font-size: 1.5rem;
+                margin: 0 10px;
+            }
+            
+            /* Services Mobile */
+            .services-section {
+                padding: 60px 0;
+            }
+            
+            .services-grid-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .service-item-card {
+                padding: 30px 20px;
+                margin-bottom: 15px;
+            }
+            
+            .service-icon-wrapper {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 20px;
+            }
+            
+            .service-icon-wrapper i {
+                font-size: 1.8rem;
+            }
+            
+            /* Image Slider Mobile */
+            .carousel-section {
+                padding: 60px 0;
+            }
+            
+            .image-carousel {
+                height: 300px;
+            }
+            
+            .slide-details {
+                padding: 20px;
+            }
+            
+            .slide-details h3 {
+                font-size: 1.3rem;
+                margin-bottom: 8px;
+            }
+            
+            .slide-details p {
+                font-size: 0.95rem;
+            }
+            
+            .carousel-nav-next,
+            .carousel-nav-prev {
+                width: 40px;
+                height: 40px;
+                display: none;
+            }
+            
+            .carousel-nav-next:after,
+            .carousel-nav-prev:after {
+                font-size: 1.2rem;
+            }
+            
+            /* Solutions Mobile */
+            .solutions-section {
+                padding: 60px 0;
+            }
+            
+            .solutions-layout {
+                gap: 50px;
+            }
+            
+            .solution-block {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .solution-block:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .solution-text-content h3 {
+                font-size: 1.6rem;
+            }
+            
+            .solution-visual img {
+                max-height: 250px;
+                object-fit: cover;
+            }
+            
+            /* About Mobile */
+            .about-section {
+                padding: 60px 0;
+            }
+            
+            .about-section p {
+                font-size: 1.1rem;
+                margin-bottom: 40px;
+            }
+            
+            .stats-grid {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .stat-item h3 {
+                font-size: 2.5rem;
+            }
+            
+            .stat-item p {
+                font-size: 1rem;
+            }
+            
+            /* Contact Mobile */
+            .contact-section {
+                padding: 60px 0;
+            }
+            
+            .contact-layout {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .contact-form-container,
+            .contact-details-card {
+                padding: 25px;
+            }
+            
+            .contact-form-container input,
+            .contact-form-container select,
+            .contact-form-container textarea {
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+            
+            .contact-info-item {
+                margin-bottom: 20px;
+            }
+            
+            /* Footer Mobile */
+            .site-footer {
+                padding: 50px 0 20px;
+            }
+            
+            .footer-main-area {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin-bottom: 40px;
+            }
+            
+            .footer-about-section {
+                max-width: 100%;
+            }
+            
+            .footer-links-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-column-section {
+                margin-bottom: 20px;
+            }
+            
+            .footer-column-section h4 {
+                margin-bottom: 15px;
+            }
+            
+            .footer-column-section li {
+                margin-bottom: 8px;
+            }
+            
+            .footer-bottom-area {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                padding-top: 20px;
+            }
+            
+            .footer-legal-info {
+                text-align: center;
+            }
+            
+            .legal-links-group {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px 20px;
+            }
+            
+            .social-icons-group {
+                justify-content: center;
+            }
+            
+            /* Animation Adjustments */
+            .animate-fade-up,
+            .animate-fade-in,
+            .animate-fade-left,
+            .animate-fade-right {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            /* Hide Background Animation on Mobile for Performance */
+            .dynamic-background {
+                display: none;
+            }
+        }
+
+        /* Small Mobile Devices (Portrait) */
+        @media (max-width: 576px) {
+            .hero-section {
+                padding: 150px 0 80px;
+            }
+
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .action-button-group {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .action-btn {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+
+            .services-grid-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .service-item-card {
+                padding: 30px 20px;
+            }
+
+            .marquee-content span {
+                font-size: 1.8rem;
+                margin: 0 10px;
+            }
+
+            .slide-details h3 {
+                font-size: 1.5rem;
+            }
+
+            .slide-details p {
+                font-size: 1rem;
+            }
+
+            .footer-links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .site-footer {
+                padding: 60px 0 20px;
+            }
+
+            .footer-main-area {
+                gap: 40px;
+                margin-bottom: 40px;
+            }
+        }
+
+        /* Extra Small Mobile Devices */
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-section p {
+                font-size: 1rem;
+            }
+            
+            .marquee-content span {
+                font-size: 1.3rem;
+                margin: 0 5px;
+            }
+            
+            .image-carousel {
+                height: 250px;
+            }
+            
+            .solution-visual img {
+                max-height: 200px;
+            }
+            
+            .contact-form-container,
+            .contact-details-card {
+                padding: 20px;
+            }
+            
+            .newsletter-form-container input {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .newsletter-submit-btn {
+                padding: 0 15px;
+            }
+            
+            .social-icon-link {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .social-icon-link i {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Tablet Devices (768px - 1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .main-container {
+                padding: 0 30px;
+            }
+            
+            .hero-section .main-container {
+                gap: 40px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.8rem;
+            }
+            
+            .services-grid-layout {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .solution-block {
+                gap: 30px;
+            }
+            
+            .image-carousel {
+                height: 400px;
+            }
+            
+            .footer-main-area {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Landscape Mobile */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero-section {
+                min-height: auto;
+                padding: 100px 0 50px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-menu {
+                padding: 60px 20px 20px;
+            }
+            
+            .nav-menu li {
+                margin-bottom: 10px;
+            }
+            
+            .service-item-card {
+                padding: 20px;
+            }
+        }
+
+        /* High-DPI Mobile Devices */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .action-btn,
+            .service-icon-wrapper,
+            .social-icon-link {
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            .mobile-menu-btn,
+            .nav-menu a,
+            .footer-column-section a {
+                -webkit-tap-highlight-color: rgba(124, 58, 237, 0.1);
+            }
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            .nav-menu {
+                background: var(--secondary);
+            }
+            
+            .nav-menu a {
+                color: white;
+            }
+            
+            .mobile-menu-btn {
+                color: white;
+            }
+        }
+
+        /* Reduce Motion for Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .hero-visual img,
+            .animated-bubble,
+            .floating-shape,
+            .marquee-content {
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="dynamic-background" id="dynamic-background"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="main-container">
+            <a href="index.html" class="brand-logo">Stack<span class="highlight-text">Ly</span></a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Mobile Menu Overlay -->
+            <div class="nav-overlay" id="navOverlay"></div>
+            
+            <!-- Navigation Links -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="404.html">Services</a></li>
+                <li><a href="404.html">Solutions</a></li>
+                <li><a href="404.html">About</a></li>
+                <li><a href="404.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="main-container">
+            <div class="hero-content-area animate-fade-in">
+                <h1 class="animate-fade-up">Transforming Businesses with <span class="gradient-text">Innovative Solutions</span></h1>
+                <p class="animate-fade-up animation-delay-1">We provide cutting-edge business solutions to drive growth, efficiency, and digital transformation for enterprises worldwide.</p>
+                <div class="action-button-group animate-fade-up animation-delay-2">
+                    <a href="404.html" class="action-btn action-btn-main">Get Started</a>
+                    <a href="404.html" class="action-btn action-btn-alt">Our Services</a>
+                </div>
+            </div>
+            <div class="hero-visual animate-fade-in animation-delay-2">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Business Solutions">
+            </div>
+        </div>
+    </section>
+
+    <!-- Letter Slider -->
+    <div class="marquee-container">
+        <div class="marquee-content" id="marquee-content">
+            <!-- Letters will be added dynamically with JavaScript -->
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="main-container">
+            <div class="section-title-area animate-fade-up">
+                <h2>Our Professional Services</h2>
+                <p>Comprehensive solutions tailored to your business needs</p>
+            </div>
+            <div class="services-grid-layout">
+                <div class="service-item-card animate-fade-up">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Business Strategy</h3>
+                    <p>Data-driven strategic planning and market analysis to optimize your business direction.</p>
+                </div>
+                <div class="service-item-card animate-fade-up animation-delay-1">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Digital Transformation</h3>
+                    <p>Modernize your operations with cutting-edge technology and digital workflows.</p>
+                </div>
+                <div class="service-item-card animate-fade-up animation-delay-2">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3>Process Optimization</h3>
+                    <p>Streamline operations and increase efficiency through systematic process improvement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Slider -->
+    <section class="carousel-section">
+        <div class="main-container">
+            <div class="section-title-area animate-fade-up">
+                <h2>Our Success Stories</h2>
+                <p>See how we've helped businesses transform and grow</p>
+            </div>
+            <div class="image-carousel myCarousel">
+                <div class="swiper-wrapper">
+                    <div class="carousel-slide swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Business meeting">
+                        <div class="slide-details">
+                            <h3>Global Tech Expansion</h3>
+                            <p>Helped a tech startup expand to 3 new countries with tailored market entry strategies.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Data analysis">
+                        <div class="slide-details">
+                            <h3>Data-Driven Retail Transformation</h3>
+                            <p>Implemented analytics solutions that increased sales by 45% for a retail chain.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Cloud solutions">
+                        <div class="slide-details">
+                            <h3>Cloud Migration Success</h3>
+                            <p>Migrated enterprise systems to cloud, reducing IT costs by 60% while improving scalability.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Team collaboration">
+                        <div class="slide-details">
+                            <h3>Operational Efficiency Boost</h3>
+                            <p>Optimized processes for a manufacturing firm, increasing productivity by 35%.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-nav-next"></div>
+                <div class="carousel-nav-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="solutions-section">
+        <div class="main-container">
+            <div class="section-title-area animate-fade-up">
+                <h2>Enterprise Solutions</h2>
+                <p>Specialized solutions for complex business challenges</p>
+            </div>
+            <div class="solutions-layout">
+                <div class="solution-block animate-fade-left">
+                    <div class="solution-text-content">
+                        <h3>Cloud Integration</h3>
+                        <p>Seamless migration and integration of cloud solutions for enhanced scalability and security.</p>
+                        <ul>
+                            <li>AWS & Azure Migration</li>
+                            <li>Hybrid Cloud Solutions</li>
+                            <li>Cloud Security Management</li>
+                        </ul>
+                    </div>
+                    <div class="solution-visual">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cloud Solutions">
+                    </div>
+                </div>
+                <div class="solution-block animate-fade-right">
+                    <div class="solution-visual">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data Analytics">
+                    </div>
+                    <div class="solution-text-content">
+                        <h3>Data Analytics</h3>
+                        <p>Transform raw data into actionable insights with advanced analytics and visualization tools.</p>
+                        <ul>
+                            <li>Predictive Analytics</li>
+                            <li>Real-time Dashboards</li>
+                            <li>Business Intelligence</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="main-container">
+            <div class="about-content-wrapper animate-fade-up">
+                <h2>Why Choose StackLy?</h2>
+                <p>With over 15 years of experience, we've helped 500+ businesses achieve their growth targets through innovative solutions and strategic partnerships.</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>500+</h3>
+                        <p>Clients Worldwide</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>98%</h3>
+                        <p>Client Satisfaction</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24/7</h3>
+                        <p>Support Available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="main-container">
+            <div class="section-title-area animate-fade-up">
+                <h2>Get In Touch</h2>
+                <p>Ready to transform your business? Contact us today.</p>
+            </div>
+            <div class="contact-layout">
+                <form class="contact-form-container animate-fade-up">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Company Name">
+                    <select required>
+                        <option value="">Select Service</option>
+                        <option value="strategy">Business Strategy</option>
+                        <option value="digital">Digital Transformation</option>
+                        <option value="process">Process Optimization</option>
+                    </select>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="action-btn action-btn-main">Send Message</button>
+                </form>
+                <div class="contact-details-card animate-fade-up animation-delay-1">
+                    <h3>Contact Information</h3>
+                    <div class="contact-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>79 Aishwarya Complex,Nethaji Road,P.N Palayam, <br> Coimbatore 641037.</p>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>8056522920</p>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@thestackly.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="main-container">
+            <div class="footer-main-area">
+                <div class="footer-about-section">
+                    <a href="#home" class="brand-logo">Stack<span class="highlight-text">Ly</span></a>
+                    <p>Transforming businesses through innovative solutions since 2008. We help enterprises achieve digital excellence and sustainable growth.</p>
+                    <div class="footer-newsletter-area">
+                        <h4>Stay Updated</h4>
+                        <form class="newsletter-form-container">
+                            <input type="email" placeholder="Enter your email" required>
+                            <button type="submit" class="newsletter-submit-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="footer-links-grid">
+                    <div class="footer-column-section">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="404.html">Business Strategy</a></li>
+                            <li><a href="404.html">Digital Transformation</a></li>
+                            <li><a href="404.html">Process Optimization</a></li>
+                            <li><a href="404.html">Cloud Integration</a></li>
+                            <li><a href="404.html">Data Analytics</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="index.html">About Us</a></li>
+                            <li><a href="404.html">Careers</a></li>
+                            <li><a href="404.html">Partnerships</a></li>
+                            <li><a href="404.html">Testimonials</a></li>
+                            <li><a href="404.html">Case Studies</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="404.html">Blog</a></li>
+                            <li><a href="404.html">Whitepapers</a></li>
+                            <li><a href="404.html">Webinars</a></li>
+                            <li><a href="404.html">Tools</a></li>
+                            <li><a href="404.html">Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-contact-area">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Head Office</strong>
+                                <p>79 Aishwarya Complex, Nethaji Road<br>P.N Palayam, Coimbatore 641037</p>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong>
+                                <p>+91 70107 92745</p>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p>info@thestackly.com</p>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Business Hours</strong>
+                                <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-area">
+                <div class="footer-social-area">
+                    <h5>Follow Us</h5>
+                    <div class="social-icons-group">
+                        <a href="404.html" class="social-icon-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="404.html" class="social-icon-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="404.html" class="social-icon-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="404.html" class="social-icon-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="404.html" class="social-icon-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="404.html" class="social-icon-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-legal-info">
+                    <p>&copy; 2024 StackLy Consulting. All Rights Reserved.</p>
+                    <div class="legal-links-group">
+                        <a href="404.html">Privacy Policy</a>
+                        <a href="404.html">Terms of Service</a>
+                        <a href="404.html">Cookie Policy</a>
+                        <a href="404.html">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Mobile Menu Functionality
+        function initMobileNavigation() {
+            const menuToggle = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            const navOverlay = document.getElementById('navOverlay');
+            const body = document.body;
+            
+            if (!menuToggle || !navMenu || !navOverlay) {
+                console.error('Mobile menu elements not found!');
+                return;
+            }
+            
+            let isMenuOpen = false;
+            
+            function toggleMobileMenu() {
+                isMenuOpen = !isMenuOpen;
+                
+                menuToggle.setAttribute('aria-expanded', isMenuOpen);
+                menuToggle.classList.toggle('active');
+                
+                navMenu.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+                body.classList.toggle('menu-open');
+                
+                const icon = menuToggle.querySelector('i');
+                if (isMenuOpen) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+                
+                // Focus management for accessibility
+                if (isMenuOpen) {
+                    const firstMenuItem = navMenu.querySelector('a');
+                    if (firstMenuItem) {
+                        setTimeout(() => firstMenuItem.focus(), 100);
+                    }
+                } else {
+                    menuToggle.focus();
+                }
+            }
+            
+            function closeMobileMenu() {
+                if (isMenuOpen) {
+                    isMenuOpen = false;
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    
+                    menuToggle.focus();
+                }
+            }
+            
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMobileMenu();
+            });
+            
+            navOverlay.addEventListener('click', closeMobileMenu);
+            
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth < 768) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && isMenuOpen) {
+                    closeMobileMenu();
+                }
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth < 768 && isMenuOpen) {
+                    const isClickInsideMenu = navMenu.contains(e.target) || menuToggle.contains(e.target);
+                    
+                    if (!isClickInsideMenu) {
+                        closeMobileMenu();
+                    }
+                }
+            });
+            
+            function handleResize() {
+                if (window.innerWidth >= 768 && isMenuOpen) {
+                    closeMobileMenu();
+                }
+            }
+            
+            window.addEventListener('resize', handleResize);
+        }
+
+        // Enhanced Background Animation
+        function createDynamicBackground() {
+            const animationContainer = document.getElementById('dynamic-background');
+            
+            const bubbleCount = 20;
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('animated-bubble');
+                
+                const size = Math.random() * 120 + 30;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.top = `${Math.random() * 100}%`;
+                
+                bubble.style.animationDelay = `${Math.random() * 15}s`;
+                bubble.style.animationDuration = `${15 + Math.random() * 10}s`;
+                
+                animationContainer.appendChild(bubble);
+            }
+            
+            const elementCount = 10;
+            for (let i = 0; i < elementCount; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-shape');
+                
+                if (Math.random() > 0.5) {
+                    element.classList.add('circular');
+                } else {
+                    element.classList.add('diamond');
+                }
+                
+                const size = 50 + Math.random() * 100;
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100}%`;
+                
+                element.style.animationDelay = `${Math.random() * 20}s`;
+                element.style.animationDuration = `${20 + Math.random() * 20}s`;
+                
+                animationContainer.appendChild(element);
+            }
+        }
+
+        // Letter Slider
+        function createMarqueeContent() {
+            const marquee = document.getElementById('marquee-content');
+            const text = "ENTERPRISE SOLUTIONS • BUSINESS CONSULTING • DIGITAL TRANSFORMATION • INNOVATION • GROWTH • STRATEGY • ";
+            
+            for (let i = 0; i < 2; i++) {
+                for (let char of text) {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    marquee.appendChild(span);
+                }
+            }
+        }
+
+        // Scroll Animation
+        function checkScrollAnimations() {
+            const elements = document.querySelectorAll('.animate-fade-in, .animate-fade-up, .animate-fade-left, .animate-fade-right');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Initialize Swiper
+        function initializeCarousel() {
+            const carousel = new Swiper('.myCarousel', {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.carousel-nav-next',
+                    prevEl: '.carousel-nav-prev',
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                },
+                breakpoints: {
+                    768: {
+                        navigation: {
+                            enabled: false
+                        }
+                    },
+                    1024: {
+                        navigation: {
+                            enabled: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Navbar scroll effect
+        function handleNavbarScroll() {
+            const navbar = document.querySelector('.main-nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // Form submission
+        function handleFormSubmission() {
+            const form = document.querySelector('.contact-form-container');
+            const newsletterForm = document.querySelector('.newsletter-form-container');
+            
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.');
+                    form.reset();
+                });
+            }
+            
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = newsletterForm.querySelector('input[type="email"]').value;
+                    alert(`Thank you for subscribing with ${email}! You'll receive updates from us.`);
+                    newsletterForm.reset();
+                });
+            }
+        }
+
+        // Optimize background animation for mobile
+        function optimizeMobilePerformance() {
+            const background = document.getElementById('dynamic-background');
+            if (window.innerWidth <= 768 && background) {
+                const bubbles = background.querySelectorAll('.animated-bubble');
+                const elements = background.querySelectorAll('.floating-shape');
+                
+                for (let i = 5; i < bubbles.length; i++) {
+                    bubbles[i].style.display = 'none';
+                }
+                
+                for (let i = 3; i < elements.length; i++) {
+                    elements[i].style.display = 'none';
+                }
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createDynamicBackground();
+            createMarqueeContent();
+            initializeCarousel();
+            initMobileNavigation();
+            handleFormSubmission();
+            optimizeMobilePerformance();
+            
+            // Initial check for scroll animations
+            checkScrollAnimations();
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', () => {
+                checkScrollAnimations();
+                handleNavbarScroll();
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Re-optimize on resize
+            window.addEventListener('resize', optimizeMobilePerformance);
+            
+            // Initial navbar scroll check
+            handleNavbarScroll();
+        });
+    </script>
+</body>
+</html>

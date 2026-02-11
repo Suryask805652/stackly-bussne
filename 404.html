@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | 404 Error - StackLy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5a67d8;
+            --primary-dark: #4c51bf;
+            --secondary: #f56565;
+            --accent: #ed8936;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --gray: #718096;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.5;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* MOBILE-FIRST CONTAINER */
+        .container {
+            width: 100%;
+            padding-left: 16px;
+            padding-right: 16px;
+            margin: 0 auto;
+        }
+
+        /* MOBILE-FIRST NAVIGATION - Default (Mobile) Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            z-index: 1001;
+        }
+
+        .logo span {
+            color: var(--primary-dark);
+        }
+
+        /* ==================== */
+        /* MOBILE MENU STYLES */
+        /* ==================== */
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            padding: 8px;
+            display: block;
+            z-index: 1001;
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+
+        .menu-toggle:hover {
+            background: var(--light);
+        }
+
+        .menu-toggle.active {
+            color: var(--primary);
+        }
+
+        /* Mobile Menu Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Menu Panel */
+        .nav-links {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 85%;
+            max-width: 320px;
+            height: 100vh;
+            background: var(--white);
+            padding: 80px 0 30px 0;
+            margin: 0;
+            list-style: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-links.active {
+            left: 0;
+        }
+
+        .nav-links li {
+            border-bottom: 1px solid #f0f0f0;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links.active li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Staggered animation for menu items */
+        .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
+        .nav-links.active li:nth-child(2) { transition-delay: 0.15s; }
+        .nav-links.active li:nth-child(3) { transition-delay: 0.2s; }
+        .nav-links.active li:nth-child(4) { transition-delay: 0.25s; }
+        .nav-links.active li:nth-child(5) { transition-delay: 0.3s; }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            padding: 18px 25px;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(90deg, rgba(90, 103, 216, 0.1), transparent);
+            color: var(--primary);
+            padding-left: 30px;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            transform: scaleY(1);
+        }
+
+        .nav-links a i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        .nav-links a:hover i {
+            color: var(--primary);
+        }
+
+        /* ==================== */
+        /* 404 CONTENT STYLES (Mobile First) */
+        /* ==================== */
+        .error-content {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 0 60px;
+        }
+
+        .error-container {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .error-number {
+            font-size: 8rem;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .error-message {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* MOBILE BUTTONS */
+        .error-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(90, 103, 216, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* MOBILE SEARCH */
+        .error-search {
+            margin-bottom: 3rem;
+        }
+
+        .search-box {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .search-box input {
+            padding: 14px 20px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.1);
+        }
+
+        .search-btn {
+            padding: 14px 24px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* MOBILE LINK CARDS */
+        .error-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .link-card {
+            background: white;
+            border-radius: 10px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .link-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .link-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .link-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* ==================== */
+        /* RESPONSIVE BREAKPOINTS */
+        /* ==================== */
+
+        /* EXTRA SMALL DEVICES (Phones, 320px - 374px) */
+        @media (max-width: 374px) {
+            .container {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+            
+            .navbar .container {
+                padding: 0 15px;
+                height: 60px;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                max-width: none;
+            }
+            
+            .nav-links a {
+                padding: 14px 20px;
+                font-size: 1rem;
+            }
+            
+            .error-number {
+                font-size: 5rem;
+            }
+            
+            .error-title {
+                font-size: 1.3rem;
+            }
+            
+            .error-message {
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* SMALL MOBILE (375px - 424px) */
+        @media (min-width: 375px) and (max-width: 424px) {
+            .nav-links {
+                width: 90%;
+            }
+            
+            .error-number {
+                font-size: 5.5rem;
+            }
+        }
+
+        /* STANDARD MOBILE (425px - 639px) */
+        @media (min-width: 425px) and (max-width: 639px) {
+            .nav-links {
+                width: 80%;
+            }
+            
+            .error-number {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* LARGE MOBILE/PHABLET (640px - 767px) */
+        @media (min-width: 640px) and (max-width: 767px) {
+            .nav-links {
+                width: 70%;
+                max-width: 400px;
+            }
+            
+            .nav-links a {
+                padding: 20px 30px;
+                font-size: 1.15rem;
+            }
+            
+            .error-number {
+                font-size: 7rem;
+            }
+            
+            .error-title {
+                font-size: 1.7rem;
+            }
+            
+            .error-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .link-card {
+                flex: 1;
+                min-width: calc(50% - 10px);
+            }
+        }
+
+        /* ==================== */
+        /* TABLET BREAKPOINT (768px) */
+        /* ==================== */
+        @media (min-width: 768px) {
+            /* Container sizes */
+            .container {
+                max-width: 720px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Hide mobile menu elements */
+            .menu-toggle {
+                display: none;
+            }
+            
+            .menu-overlay {
+                display: none;
+            }
+            
+            /* Desktop Navigation Styles */
+            .nav-links {
+                position: static;
+                width: auto;
+                height: auto;
+                max-width: none;
+                background: transparent;
+                box-shadow: none;
+                padding: 0;
+                flex-direction: row;
+                gap: 10px;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                left: 0;
+                transition: none;
+                overflow: visible;
+            }
+            
+            .nav-links li {
+                border: none;
+                opacity: 1;
+                transform: none;
+                transition: none;
+                margin: 0;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links a {
+                padding: 8px 16px;
+                font-size: 1rem;
+                border-radius: 4px;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .nav-links a:hover {
+                background: rgba(90, 103, 216, 0.1);
+                color: var(--primary);
+                padding-left: 16px;
+                transform: none;
+            }
+            
+            .nav-links a::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: var(--primary);
+                transform: scaleX(0);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links a:hover::before {
+                transform: scaleX(1);
+            }
+            
+            .nav-links a i {
+                display: none;
+            }
+            
+            /* Tablet 404 Content */
+            .error-number {
+                font-size: 10rem;
+            }
+
+            .error-title {
+                font-size: 2.2rem;
+            }
+            
+            .error-message {
+                font-size: 1.1rem;
+                max-width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .error-actions {
+                flex-direction: row;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .error-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .link-card {
+                flex: 1;
+                min-width: calc(50% - 20px);
+            }
+
+            .search-box {
+                flex-direction: row;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .search-box input {
+                flex: 1;
+            }
+
+            .search-btn {
+                width: auto;
+                min-width: 120px;
+            }
+        }
+
+        /* MEDIUM TABLET (769px - 834px) */
+        @media (min-width: 769px) and (max-width: 834px) {
+            .container {
+                max-width: 750px;
+            }
+            
+            .nav-links a {
+                padding: 8px 12px;
+                font-size: 0.95rem;
+            }
+            
+            .error-number {
+                font-size: 9rem;
+            }
+        }
+
+        /* LARGE TABLET (835px - 991px) */
+        @media (min-width: 835px) and (max-width: 991px) {
+            .container {
+                max-width: 800px;
+            }
+            
+            .error-number {
+                font-size: 11rem;
+            }
+            
+            .link-card {
+                min-width: calc(33.333% - 20px);
+            }
+        }
+
+        /* ==================== */
+        /* DESKTOP BREAKPOINTS */
+        /* ==================== */
+
+        /* SMALL DESKTOP (992px - 1199px) */
+        @media (min-width: 992px) {
+            .container {
+                max-width: 960px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                padding: 10px 20px;
+                font-size: 1.05rem;
+            }
+
+            .error-number {
+                font-size: 12rem;
+            }
+
+            .error-title {
+                font-size: 2.5rem;
+            }
+
+            .error-links {
+                gap: 30px;
+            }
+
+            .link-card {
+                flex: 1;
+                min-width: calc(33.333% - 30px);
+            }
+        }
+
+        /* MEDIUM DESKTOP (1200px - 1439px) */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+
+            .error-number {
+                font-size: 15rem;
+            }
+            
+            .error-message {
+                font-size: 1.2rem;
+                max-width: 600px;
+            }
+        }
+
+        /* LARGE DESKTOP (1440px and up) */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1320px;
+            }
+            
+            .error-number {
+                font-size: 18rem;
+            }
+            
+            .error-title {
+                font-size: 3rem;
+            }
+        }
+
+        /* ==================== */
+        /* SPECIAL CASES */
+        /* ==================== */
+
+        /* LANDSCAPE MOBILE */
+        @media (max-width: 767px) and (orientation: landscape) {
+            .error-content {
+                padding: 80px 0 40px;
+                min-height: auto;
+            }
+            
+            .nav-links {
+                padding-top: 70px;
+                max-height: 100vh;
+                overflow-y: auto;
+            }
+            
+            .nav-links li {
+                border-bottom: 1px solid #eee;
+            }
+            
+            .nav-links a {
+                padding: 14px 25px;
+            }
+            
+            .error-number {
+                font-size: 5rem;
+            }
+            
+            .error-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .link-card {
+                flex: 1;
+                min-width: calc(50% - 10px);
+            }
+        }
+
+        /* VERY SMALL HEIGHT DEVICES */
+        @media (max-width: 767px) and (max-height: 500px) {
+            .nav-links {
+                padding-top: 60px;
+            }
+            
+            .nav-links a {
+                padding: 12px 25px;
+            }
+            
+            .nav-links a i {
+                font-size: 0.9rem;
+            }
+            
+            .error-content {
+                padding: 80px 0 30px;
+            }
+        }
+
+        /* ==================== */
+        /* DARK MODE SUPPORT */
+        /* ==================== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --dark: #f7fafc;
+                --light: #1a202c;
+                --white: #2d3748;
+                --gray: #a0aec0;
+            }
+            
+            body {
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            }
+            
+            .navbar {
+                background: var(--white);
+            }
+            
+            .menu-toggle {
+                color: var(--dark);
+            }
+            
+            .nav-links {
+                background: var(--white);
+            }
+            
+            .nav-links a {
+                color: var(--dark);
+            }
+            
+            .nav-links li {
+                border-bottom: 1px solid #4a5568;
+            }
+            
+            .nav-links a:hover {
+                background: linear-gradient(90deg, rgba(90, 103, 216, 0.2), transparent);
+                color: var(--primary);
+            }
+            
+            .link-card {
+                background: var(--white);
+                color: var(--dark);
+            }
+            
+            .link-card h3 {
+                color: var(--dark);
+            }
+            
+            .link-card p {
+                color: var(--gray);
+            }
+            
+            .search-box input {
+                background: var(--white);
+                color: var(--dark);
+                border-color: #4a5568;
+            }
+            
+            .search-box input::placeholder {
+                color: var(--gray);
+            }
+            
+            @media (max-width: 767px) {
+                .menu-overlay {
+                    background: rgba(0, 0, 0, 0.7);
+                }
+            }
+        }
+
+        /* ==================== */
+        /* HIGH DPI/TOUCH OPTIMIZATION */
+        /* ==================== */
+        @media (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2),
+               (max-width: 767px) and (min-resolution: 192dpi) {
+            .menu-toggle,
+            .nav-links a,
+            .btn,
+            .search-btn {
+                -webkit-tap-highlight-color: rgba(90, 103, 216, 0.2);
+            }
+            
+            .nav-links a {
+                min-height: 50px;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        /* ==================== */
+        /* REDUCED MOTION SUPPORT */
+        /* ==================== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .nav-links,
+            .nav-links li,
+            .nav-links a,
+            .menu-overlay,
+            .link-card,
+            .btn {
+                transition: none !important;
+                animation: none !important;
+            }
+            
+            .nav-links.active li {
+                opacity: 1;
+                transform: none;
+            }
+            
+            .fade-in {
+                opacity: 1;
+                animation: none !important;
+            }
+        }
+
+        /* ==================== */
+        /* ACCESSIBILITY IMPROVEMENTS */
+        /* ==================== */
+        @media (max-width: 767px) {
+            /* Prevent body scroll when menu is open */
+            body.menu-open {
+                overflow: hidden;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+            }
+            
+            /* Mobile menu animation delays */
+            .nav-links li {
+                animation-delay: calc(var(--i) * 0.05s);
+            }
+        }
+
+        /* Focus styles for accessibility */
+        a:focus,
+        button:focus,
+        input:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Skip to content link for screen readers */
+        .skip-to-content {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1001;
+            transition: top 0.3s;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
+
+        /* Print styles */
+        @media print {
+            .navbar,
+            .error-actions,
+            .error-search {
+                display: none;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .error-content {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Stack<span>Ly</span></a>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                <i class=""></i>
+            </button>
+            
+            <!-- Mobile Menu Overlay -->
+            <div class="menu-overlay" id="menuOverlay"></div>
+            
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html"><i class=""></i> Home</a></li>
+                <li><a href="#services"><i class=""></i> Services</a></li>
+                <li><a href="#solutions"><i class=""></i> Solutions</a></li>
+                <li><a href="#about"><i class=""></i> About</a></li>
+                <li><a href="#contact"><i class=""></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="error-content" id="main-content">
+        <div class="container error-container">
+            <h1 class="error-number fade-in">404</h1>
+            <h2 class="error-title fade-in delay-1">Page Not Found</h2>
+            <p class="error-message fade-in delay-2">
+                Oops! The page you're looking for seems to have wandered off into the digital void. 
+                But don't worry - we're here to help you find your way back.
+            </p>
+            
+            <div class="error-actions fade-in delay-2">
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    <i class="fas fa-headset"></i> Get Help
+                </a>
+            </div>
+
+            <div class="error-search fade-in delay-3">
+                <p style="margin-bottom: 1rem; color: var(--gray); font-size: 1.1rem;">Search for what you need:</p>
+                <div class="search-box">
+                    <input type="text" placeholder="Type your search here..." id="searchInput" aria-label="Search input">
+                    <button class="search-btn" id="searchBtn" aria-label="Search">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+
+            <div class="error-links">
+                <div class="link-card fade-in delay-1">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Business Strategy</h3>
+                    <p>Discover strategic planning services to optimize your business growth and direction.</p>
+                    <a href="#services" class="btn btn-small btn-primary">Learn More</a>
+                </div>
+                
+                <div class="link-card fade-in delay-2">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Digital Solutions</h3>
+                    <p>Transform operations with our cutting-edge technology services and digital solutions.</p>
+                    <a href="#solutions" class="btn btn-small btn-primary">Explore</a>
+                </div>
+                
+                <div class="link-card fade-in delay-3">
+                    <i class="fas fa-book"></i>
+                    <h3>Resources</h3>
+                    <p>Access our library of business resources, case studies, and implementation guides.</p>
+                    <a href="#about" class="btn btn-small btn-outline">Browse</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Elements
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const body = document.body;
+            const navbar = document.getElementById('navbar');
+            
+            // Mobile Menu State
+            let isMenuOpen = false;
+            
+            // Toggle Mobile Menu
+            function toggleMobileMenu() {
+                isMenuOpen = !isMenuOpen;
+                
+                // Update ARIA attributes
+                menuToggle.setAttribute('aria-expanded', isMenuOpen);
+                
+                // Toggle classes
+                navLinks.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+                body.classList.toggle('menu-open');
+                
+                // Update icon
+                const icon = menuToggle.querySelector('i');
+                if (isMenuOpen) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+                
+                // Focus management for accessibility
+                if (isMenuOpen) {
+                    // Focus first menu item when menu opens
+                    const firstMenuItem = navLinks.querySelector('a');
+                    if (firstMenuItem) {
+                        setTimeout(() => firstMenuItem.focus(), 100);
+                    }
+                } else {
+                    // Return focus to menu toggle when menu closes
+                    menuToggle.focus();
+                }
+            }
+            
+            // Close Mobile Menu
+            function closeMobileMenu() {
+                if (isMenuOpen) {
+                    isMenuOpen = false;
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    
+                    // Return focus to menu toggle
+                    menuToggle.focus();
+                }
+            }
+            
+            // Event Listeners
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleMobileMenu();
+                });
+            }
+            
+            // Close menu when clicking overlay
+            if (menuOverlay) {
+                menuOverlay.addEventListener('click', closeMobileMenu);
+            }
+            
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth < 768) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+            
+            // Close menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && isMenuOpen) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Close menu when clicking outside on mobile
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth < 768 && isMenuOpen) {
+                    const isClickInsideMenu = navLinks.contains(e.target) || menuToggle.contains(e.target);
+                    
+                    if (!isClickInsideMenu) {
+                        closeMobileMenu();
+                    }
+                }
+            });
+            
+            // Navbar scroll effect
+            function handleNavbarScroll() {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+            
+            // Handle window resize
+            function handleResize() {
+                if (window.innerWidth >= 768 && isMenuOpen) {
+                    closeMobileMenu();
+                }
+                
+                // Update menu items animation delays
+                const menuItems = document.querySelectorAll('.nav-links li');
+                menuItems.forEach((item, index) => {
+                    item.style.setProperty('--i', index);
+                });
+            }
+            
+            window.addEventListener('resize', handleResize);
+            window.addEventListener('scroll', handleNavbarScroll);
+            handleResize(); // Initialize
+            handleNavbarScroll(); // Initialize
+            
+            // Search Functionality
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            function handleSearch() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    // Show loading state
+                    const originalText = searchBtn.innerHTML;
+                    searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+                    searchBtn.disabled = true;
+                    
+                    setTimeout(() => {
+                        // Reset button
+                        searchBtn.innerHTML = originalText;
+                        searchBtn.disabled = false;
+                        
+                        // Simple search logic
+                        const searchTerms = query.toLowerCase();
+                        if (searchTerms.includes('service')) {
+                            window.location.href = 'index.html#services';
+                        } else if (searchTerms.includes('contact') || searchTerms.includes('help')) {
+                            window.location.href = 'index.html#contact';
+                        } else if (searchTerms.includes('about')) {
+                            window.location.href = 'index.html#about';
+                        } else if (searchTerms.includes('home')) {
+                            window.location.href = 'index.html';
+                        } else if (searchTerms.includes('solution')) {
+                            window.location.href = 'index.html#solutions';
+                        } else {
+                            alert(`No results found for "${query}". Try searching for: services, solutions, about, or contact.`);
+                        }
+                    }, 800);
+                } else {
+                    searchInput.focus();
+                    alert('Please enter a search term.');
+                }
+            }
+            
+            if (searchBtn) {
+                searchBtn.addEventListener('click', handleSearch);
+            }
+            
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleSearch();
+                    }
+                });
+            }
+            
+            // Touch device improvements
+            if ('ontouchstart' in window) {
+                document.body.classList.add('touch-device');
+                
+                // Prevent zoom on double tap for buttons
+                document.querySelectorAll('.btn, .search-btn, .menu-toggle').forEach(button => {
+                    button.style.touchAction = 'manipulation';
+                });
+            }
+            
+            // Initialize menu items animation delays
+            const menuItems = document.querySelectorAll('.nav-links li');
+            menuItems.forEach((item, index) => {
+                item.style.setProperty('--i', index);
+            });
+            
+            // Smooth scroll for anchor links on the same page
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Performance optimization for animations
+            let lastScrollTime = 0;
+            window.addEventListener('scroll', function() {
+                const now = Date.now();
+                if (now - lastScrollTime > 100) { // Throttle scroll events
+                    handleNavbarScroll();
+                    lastScrollTime = now;
+                }
+            }, { passive: true });
+        });
+    </script>
+</body>
+</html>
